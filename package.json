@@ -1,5 +1,5 @@
 {
-  "name": "react-grid",
+  "name": "adazzle-react-grid",
   "version": "0.0.0",
   "description": "Data grid for React",
   "main": "lib/index.js",
@@ -8,14 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/prometheusresearch/react-grid.git"
+    "url": "git://github.com/adazzle/react-grid.git"
   },
   "keywords": [
     "react",
     "grid"
   ],
   "dependencies": {
-    "reactify": "^0.14.0"
+    "reactify": "^0.14.0",
+    "react": "~0.11.2"
   },
   "peerDependencies": {
     "react": "^0.11.1"
@@ -51,7 +52,12 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "es6-shim": "^0.15.0",
     "es5-shim": "^4.0.1",
-    "jasmine-react": "^1.0.7"
+    "jasmine-react": "^1.0.7",
+    "ron-react-autocomplete": "0.0.2",
+    "react-bootstrap-daterangepicker": "0.0.5",
+    "moment": "^2.8.1",
+    "exposify": "^0.2.0",
+    "browserify-shim": "^3.7.0"
   },
   "browserify": {
     "transform": [
@@ -60,13 +66,23 @@
         {
           "es6": true
         }
+      ],
+      [
+        "browserify-shim",
+        {
+          "global": true
+        }
       ]
     ]
+  },
+  "browserify-shim": {
+    "react": "global:window.React",
+    "react/addons": "global:window.React"
   },
   "author": "Prometheus Research",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/prometheusresearch/react-grid/issues"
+    "url": "https://github.com/adazzle/react-grid/issues"
   },
-  "homepage": "https://github.com/prometheusresearch/react-grid"
+  "homepage": "https://github.com/adazzle/react-grid"
 }
