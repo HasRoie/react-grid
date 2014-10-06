@@ -29,7 +29,7 @@ gulp.task('script-deps',function() {
 gulp.task('browserify',['script-deps'], function() {
 	var bundleConfig = {
 		// Specify the entry point of your app
-		entries: ['./grids/basic.js'],
+		entries: ['./grids/index.js'],
 		// Add file extentions to make optional in your requires
 		extensions: [],
 		// Enable source maps!
