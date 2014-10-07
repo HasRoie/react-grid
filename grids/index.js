@@ -4,6 +4,8 @@
 "use strict";
 
 var React          = require('react');
+var BasicGrid           = require('./basic');
+
 
 //globally expose React
 //makes dev tools (among other things) work
@@ -16,46 +18,21 @@ components.push({id:'Basic', module:require('./basic') });
 
 
 //creates a simple nav menu and viewer
-var Examples = React.createClass({
- onMenuClick: function(component) {
-   this.setState({exampleToShow: component});
- },
+var ReactGrid = React.createClass({
  getInitialState: function(){
-   return { exampleToShow: null };
+   return { exampleToShow: BasicGrid };
  },
  render: function() {
-   var detail =this.state.exampleToShow ? this.state.exampleToShow({}) : '';
-  return (<div>
-            <nav className="navbar navbar-inverse navbar-static-top" role="navigation">
-              <div className="container-fluid">
-                <Menu onMenuClick={this.onMenuClick} />
-              </div>
-            </nav>
-            {detail}
-          </div>)
- },
+   var component =this.state.exampleToShow ? this.state.exampleToShow({}) : '';   
+  return (<div>            
+          {component}
+        </div>)
+ }
 });
 //loops the components and puts out a menu item, wired to pass up the component
-var Menu = React.createClass({
- render: function() {
-   var children = components.map((comp, idx) =>
-     MenuItem({
-       id: comp.id,
-       module: comp.module,
-       onClick: this.props.onMenuClick
-     }));
-   return (<ul className="nav navbar-nav">{children}</ul>);
- },
-});
 
-var MenuItem = React.createClass({
-  handleClick: function() {
-    if (this.props.onClick) { this.props.onClick(this.props.module); }
-  },
-   render: function() {
-     return (<li onClick={this.handleClick}><a href="#">{this.props.id}</a></li>);
-   }
 
- });
+ // React.renderComponent(<ReactGrid />, document.body);
 
- React.renderComponent(<Examples />, document.body);
+
+if(window) { window.ReactGrid = window.ReactGrid|| ReactGrid; }

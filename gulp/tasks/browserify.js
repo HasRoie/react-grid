@@ -26,6 +26,8 @@ gulp.task('script-deps',function() {
 	.pipe(concat('grid-lib.js'))
 	.pipe(gulp.dest('./grids/build'))
 });
+
+
 gulp.task('browserify',['script-deps'], function() {
 	var bundleConfig = {
 		// Specify the entry point of your app
@@ -37,5 +39,19 @@ gulp.task('browserify',['script-deps'], function() {
 	};
 	// return buildBundle(bundleConfig, 'grid.js', '../../../vendor');
 	return buildBundle(bundleConfig, 'grid.js', 'grids/build/');
+
+});
+
+gulp.task('tune',['script-deps'], function() {
+	var bundleConfig = {
+		// Specify the entry point of your app
+		entries: ['./grids/index.js'],
+		// Add file extentions to make optional in your requires
+		extensions: [],
+		// Enable source maps!
+		debug: true
+	};
+	return buildBundle(bundleConfig, 'grid.js', '../../../vendor');
+	// return buildBundle(bundleConfig, 'grid.js', 'grids/build/');
 
 });

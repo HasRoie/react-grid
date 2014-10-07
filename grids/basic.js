@@ -2,8 +2,6 @@
  * @jsx React.DOM
  */
 var Grid = require('../lib/Grid');
-var EditableCell  = require('../lib/addons/cells/EditableCell');
-var SelectableGridMixin      = require('../lib/addons/grids/mixins/SelectableGridMixin');
 
 var React = require('react');
 
@@ -38,26 +36,12 @@ var columns = [
 ];
 
 var component = React.createClass({
-  mixins : [SelectableGridMixin],
-  onSelect: function(){
-    console.log('selected');
-  },
   render: function() {
-    var cellRenderer = (
-      <EditableCell
-        selected={this.state.selected}
-        onSelect={this.onSelect}/>
-    );
-
-    return this.transferPropsTo(<Grid
+    return (<Grid
       columns={columns}
       length={30000}
       rows={rows}
-      rowHeight={40}
-      cellRenderer={cellRenderer} />);
+      rowHeight={40}/>);
   }
 });
-// module.exports = component;
-
-
- React.renderComponent(<component />, document.body);
+module.exports = component;
